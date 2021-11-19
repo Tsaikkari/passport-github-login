@@ -49,16 +49,12 @@ router.post('/signup', async (req, res, next) => {
 
     const hashedPassword = await bcrypt.hash(password, 10)
     
-    const user = User.create({
+    User.create({
       username,
       password: hashedPassword
     })
 
     res.redirect('/login')
-
-    // log the user in using passport
-    req.login(user)
-    res.redirect('/profile')
 
   } catch (error) {
     next(new Error(error.message))
