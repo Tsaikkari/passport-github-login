@@ -1,6 +1,6 @@
 const loginCheck = () => {
   return (req, res, next) => {
-    if (req.user) {
+    if (req.session.user || req.user) {
       next()
     } else {
       res.redirect('/login')
